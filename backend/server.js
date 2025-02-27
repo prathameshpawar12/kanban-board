@@ -1,22 +1,19 @@
-
+const { v4: uuidv4 } = require('uuid');
 const express = require("express");
 const mysql = require("mysql2");
 const cors = require("cors");
-const fs = require('fs');
-const dotenv= require('dotenv').config();
+require('dotenv').config();
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 // Connect to MySQL
 const db = mysql.createConnection({
-  host: process.env.DB_HOST,
+  host:process.env.DB_HOST ,
   user: process.env.DB_USER, 
-  password: process.env.DB_PASSWORD, 
-  database:process.env.test, 
-  ssl:{
-    ca: fs.readFileSync(process.env.CA)
-  }
+  password:process.env.DB_PASSWORD, 
+  database:process.env.DB_NAME, 
+  port: process.env.DB_PORT || 3306
 });
 
 db.connect((err) => {
@@ -37,28 +34,28 @@ db.connect((err) => {
 
 // API to fetch tasks 
 app.get("/api/tasks", (req, res) => {
-    db.query("SELECT * FROM test.tasks", (err, results) => {
-      if (err) {
-        console.error(err);
-        res.status(500).json({ error: "Database error" });
-      } else {
-        res.json(results);
-      }
-    });
+  const sql = "SELECT * FROM tasks";
+  db.query(sql, (err, results) => {
+    if (err) {
+      console.error("Database Query Error:", err); 
+      return res.status(500).json({ error: "Database error", details: err.message });
+    }
+    res.json(results);
   });
+});
   
-  // ======== ADD NEW ENDPOINTS HERE ======== //
+  
   // Create task (POST)
   app.post("/api/tasks", (req, res) => {
     const task = {
-      id: res.insertId, // Generate UUID here
+      id:uuidv4(), // Generate UUID here
       name: req.body.name,
       description: req.body.description,
       status: req.body.status || "todo"
     };
   
-    const sql = "INSERT INTO test.tasks SET ?";
-    db.query(sql, task, (err, result) => { // Use object syntax
+    const sql = "INSERT INTO tasks SET ?";
+    db.query(sql, task, (err, result) => { 
       if (err) {
         console.error("SQL Error:", err);
         return res.status(500).json({ error: "Database error" });
