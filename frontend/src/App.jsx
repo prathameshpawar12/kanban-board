@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/tasks");
+        const response = await fetch("https://kanban-board-production-600f.up.railway.app/tasks");
         const data = await response.json();
         setTasks(data);
       } catch (error) {
