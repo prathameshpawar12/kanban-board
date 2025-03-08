@@ -12,50 +12,52 @@ function App() {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
+        // Fetch tasks from the backend
         const response = await fetch(process.env.REACT_APP_API_URL);
         const data = await response.json();
-        setTasks(data);
+        setTasks(data); // Set the tasks to the state
       } catch (error) {
-        console.error("Error fetching tasks", error);
+        console.error("Error fetching tasks", error); // Log any errors
       }
     };
-    fetchTasks();
-  }, []);
 
-  
+    fetchTasks(); // Call the function to fetch tasks on component mount
+  }, []); // The empty array means this will only run once when the component mounts
 
+  // Dark mode state management
   const [dark, setDark] = useState({
     backgroundColor: "white",
   });
 
   const [btntext, setBtntext] = useState("Dark mode");
+
+  // Function to toggle dark mode
   const changetheme = () => {
-    if (dark.backgroundColor == "white") {
+    if (dark.backgroundColor === "white") {
       setDark({
         backgroundColor: "black",
       });
       setBtntext("Light mode");
-    } else if (dark.backgroundColor == "black") {
+    } else {
       setDark({
         backgroundColor: "white",
       });
       setBtntext("Dark mode");
     }
-
- 
   };
+
   return (
     <DndProvider backend={HTML5Backend}>
       <ToastContainer />
       <div style={dark}>
         <button
-          className="fixed text-white rounded-3xl p-2 bg-gray-800  mt-5 ml-350"
+          className="fixed text-white rounded-3xl p-2 bg-gray-800 mt-5 ml-350"
           onClick={changetheme}
         >
           {btntext}
         </button>
-        <div className="w-screen h-dvw flex flex-col items-center  gap-7 pt-2">
-          <h1 className="text-3xl text-gray-700 font-bold ">KANBAN BOARD</h1>
+        <div className="w-screen h-dvw flex flex-col items-center gap-7 pt-2">
+          <h1 className="text-3xl text-gray-700 font-bold">KANBAN BOARD</h1>
           <CreateTask tasks={tasks} setTasks={setTasks} />
           <p className="text-gray-500 text-xs -mt-4">
             Drag and drop tasks between lists to update task status.
