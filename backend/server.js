@@ -8,7 +8,7 @@ const app = express();
 
 // ✅ Enable CORS (Allow frontend requests from Netlify)
 app.use(cors({
-  origin: "https://your-netlify-app.netlify.app", // 🔹 Replace with your actual Netlify URL
+  origin: "https://kanban-board-prathamesh.netlify.app", 
   methods: "GET,POST,PUT,DELETE",
   credentials: true
 }));
