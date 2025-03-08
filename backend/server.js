@@ -13,7 +13,7 @@ const db = mysql.createConnection({
   user: process.env.DB_USER, 
   password:process.env.DB_PASSWORD, 
   database:process.env.DB_NAME, 
-  port: process.env.DB_PORT || 3306,
+  port: process.env.DB_PORT || 5000,
   ssl: { rejectUnauthorized: true }
 });
 
@@ -34,7 +34,7 @@ db.connect((err) => {
 
 
 // API to fetch tasks 
-app.get("/api/tasks", (req, res) => {
+app.get("/", (req, res) => {
   const sql = "SELECT * FROM tasks";
   db.query(sql, (err, results) => {
     if (err) {
