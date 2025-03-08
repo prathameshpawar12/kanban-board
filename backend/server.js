@@ -34,7 +34,7 @@ db.connect((err) => {
 });
 
 // ✅ API to fetch tasks 
-app.get("/api/tasks", (req, res) => {
+app.get("/", (req, res) => {
   const sql = "SELECT * FROM tasks";
   db.query(sql, (err, results) => {
     if (err) {
