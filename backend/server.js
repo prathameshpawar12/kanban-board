@@ -40,7 +40,7 @@ app.get("/", (req, res) => {
   
   
   // Create task (POST)
-  app.post("/api/tasks", (req, res) => {
+  app.post("/tasks", (req, res) => {
     const task = {
       id:uuidv4(), // Generate UUID here
       name: req.body.name,
@@ -59,7 +59,7 @@ app.get("/", (req, res) => {
   });
   
   // Update task (PUT)
-  app.put("/api/tasks/:id", (req, res) => {
+  app.put("/tasks/:id", (req, res) => {
     const { id } = req.params;
     const { status } = req.body;
     const sql = "UPDATE tasks SET status = ? WHERE id = ?";
@@ -74,7 +74,7 @@ app.get("/", (req, res) => {
   });
   
   // Delete task (DELETE)
-  app.delete("/api/tasks/:id", (req, res) => {
+  app.delete("/tasks/:id", (req, res) => {
     const { id } = req.params;
     const sql = "DELETE FROM tasks WHERE id = ?";
     db.query(sql, [id], (err, result) => {
