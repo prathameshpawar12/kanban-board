@@ -85,7 +85,7 @@ const Section = ({
 
   const addItemToSection = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/tasks/${id}`, {
+      const response = await fetch(`https://kanban-board-production-d492.up.railway.app/api/tasks/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status }),
