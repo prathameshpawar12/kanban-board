@@ -13,7 +13,7 @@ function App() {
     const fetchTasks = async () => {
       try {
         // Fetch tasks from the backend
-        const response = await fetch(process.env.REACT_APP_API_URL);
+        const response = await fetch(import.meta.env.VITE_API_URL);
         const data = await response.json();
         setTasks(data); // Set the tasks to the state
       } catch (error) {
