@@ -57,9 +57,9 @@ function App() {
           {btntext}
         </button>
         <div className="w-screen h-dvw flex flex-col items-center gap-7 pt-2">
-          <h1 className="text-3xl text-gray-700 font-bold">KANBAN BOARD</h1>
+          <h1 className="text-3xl text-gray-700 font-bold text-center">KANBAN BOARD</h1>
           <CreateTask tasks={tasks} setTasks={setTasks} />
-          <p className="text-gray-500 text-xs -mt-4">
+          <p className="text-gray-500 text-xs -mt-4 text-center">
             Drag and drop tasks between lists to update task status.
           </p>
           <ListTasks tasks={tasks} setTasks={setTasks} />
