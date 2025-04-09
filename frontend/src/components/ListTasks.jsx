@@ -85,7 +85,7 @@ const Section = ({
 
   const addItemToSection = async (id) => {
     try {
-      const response = await fetch(`https://https://kanban-board-sjde.onrender.com/api/tasks/${id}`, {
+      const response = await fetch(`https://kanban-board-sjde.onrender.com/api/tasks/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status }),
