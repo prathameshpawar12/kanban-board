@@ -41,7 +41,7 @@ const CreateTask = ({ tasks, setTasks }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className=" flex flex-col items-center justify-center gap-2 md:flex md:flex-row md:items-center md:justify-center">
       <input
         type="text"
         placeholder="Enter Task Name"
