@@ -23,7 +23,7 @@ const ListTasks = ({ tasks, setTasks }) => {
 
   const statuses = ["todo", "inprogress", "peerreview", "done"];
   return (
-    <div className="flex -mt-8 gap-16 h-dvw">
+    <div className="md:flex md:-mt-8 md:gap-16 md:h-dvw flex">
       {statuses.map((status, index) => (
         <Section
           key={index}
