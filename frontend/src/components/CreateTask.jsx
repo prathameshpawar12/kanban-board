@@ -16,7 +16,7 @@ const CreateTask = ({ tasks, setTasks }) => {
     if (task.name.length > 100) return toast.error("Enter less than 100 characters");
 
     try {
-      const response = await fetch("https://kanban-board-production-d492.up.railway.app/api/tasks", {
+      const response = await fetch("https://kanban-board-sjde.onrender.com/api/tasks", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
